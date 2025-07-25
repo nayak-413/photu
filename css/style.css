@@ -1,11 +1,10 @@
-html {
-  scroll-behavior: smooth;
-}
-
+html,
 body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
   font-family: "Outfit", sans-serif;
   margin: 0;
-  padding-top: 80px;
+  padding-top: 40px;
 }
 
 /* Navbar Styling */
@@ -22,8 +21,8 @@ body {
 
 .navbar-nav .nav-link {
   color: white !important;
-  font-weight: 500;
-  margin: 0 10px;
+  font-weight: 800;
+  /* margin: 0 10px; */
   transition: color 0.3s ease;
 }
 
@@ -164,21 +163,43 @@ body {
 }
 /*==== Services ====*/
 
+.info {
+  display: flex;
+}
+
 #scrollTopBtn {
   position: fixed;
-  bottom: 40px;
-  right: 20px;
+  bottom: 30px;
+  right: 25px;
   z-index: 99;
   background-color: #ffc107;
   color: black;
   border: none;
-  padding: 12px 15px;
+  padding: 5px 9px;
   border-radius: 5px;
   cursor: pointer;
   display: none;
   transition: opacity 0.4s ease;
+  font-weight: bolder;
 }
 
 #scrollTopBtn:hover {
   background-color: #e0a800;
+}
+
+/*==========================================*/
+@media (max-width: 767.98px) {
+  .navbar-collapse {
+    text-align: left !important;
+  }
+
+  .navbar-nav {
+    align-items: flex-start !important;
+  }
+
+  .navbar-nav .nav-link {
+    text-align: left;
+    width: 100%;
+    /* padding-left: 1rem;  */
+  }
 }
