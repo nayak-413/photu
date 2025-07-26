@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Photography Gallery</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Lightbox2 -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- AOS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
+
+    <style>
+      body {
+        font-family: "Outfit", sans-serif;
+        background-color: #f5f5f5;
+      }
+
+      .gallery-img {
+        border-radius: 6px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        width: 100%;
+        height: auto;
+      }
+
+      .gallery-img:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .filter-btn.active {
+        background-color: #000;
+        color: white !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="text-center py-4 bg-dark text-white">
+      <h1 class="display-5">My Photography Gallery</h1>
+      <p class="lead">Explore my world through the lens</p>
+    </header>
+
+    <section class="container py-5">
+      <!-- Filter Buttons -->
+      <div class="text-center mb-4">
+        <button class="btn btn-outline-dark mx-1 filter-btn" data-filter="*">
+          All
+        </button>
+        <button
+          class="btn btn-outline-dark mx-1 filter-btn"
+          data-filter=".nature"
+        >
+          Nature
+        </button>
+        <button
+          class="btn btn-outline-dark mx-1 filter-btn"
+          data-filter=".portrait"
+        >
+          Portrait
+        </button>
+        <button
+          class="btn btn-outline-dark mx-1 filter-btn"
+          data-filter=".street"
+        >
+          Street
+        </button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="row g-3 grid">
+        <div class="col-sm-6 col-md-4 grid-item nature" data-aos="fade-up">
+          <a
+            href="images/nature1.jpg"
+            data-lightbox="gallery"
+            data-title="Nature 1"
+          >
+            <img
+              src="https://images.pexels.com/photos/19467538/pexels-photo-19467538.jpeg"
+              class="img-fluid gallery-img"
+              loading="lazy"
+            />
+          </a>
+        </div>
+
+        <div class="col-sm-6 col-md-4 grid-item portrait" data-aos="fade-up">
+          <a
+            href="images/portrait1.jpg"
+            data-lightbox="gallery"
+            data-title="Portrait 1"
+          >
+            <img
+              src="https://images.pexels.com/photos/30928267/pexels-photo-30928267.jpeg"
+              class="img-fluid gallery-img"
+              loading="lazy"
+            />
+          </a>
+        </div>
+
+        <div class="col-sm-6 col-md-4 grid-item street" data-aos="fade-up">
+          <a
+            href="images/street1.jpg"
+            data-lightbox="gallery"
+            data-title="Street 1"
+          >
+            <img
+              src="https://images.pexels.com/photos/32894582/pexels-photo-32894582.jpeg"
+              class="img-fluid gallery-img"
+              loading="lazy"
+            />
+          </a>
+        </div>
+
+        <!-- Add more images in the same way with appropriate categories -->
+      </div>
+    </section>
+
+    <footer class="text-center py-4 bg-dark text-white">
+      <small>&copy; 2025 Your Name | All rights reserved.</small>
+    </footer>
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lightbox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
+    <!-- AOS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- Isotope for filtering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+
+    <script>
+      AOS.init();
+
+      // Isotope filtering
+      $(window).on("load", function () {
+        var $grid = $(".grid").isotope({
+          itemSelector: ".grid-item",
+          layoutMode: "fitRows",
+        });
+
+        $(".filter-btn").on("click", function () {
+          var filterValue = $(this).attr("data-filter");
+          $grid.isotope({ filter: filterValue });
+          $(".filter-btn").removeClass("active");
+          $(this).addClass("active");
+        });
+      });
+    </script>
+  </body>
+</html>

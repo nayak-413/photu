@@ -32,7 +32,7 @@
   </head>
   <body>
     <!-- ===== Navbar ===== -->
-    <nav class="navbar navbar-expand-lg navbar-dark" data-aos="fade-down">
+    <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container">
         <a class="navbar-brand" href="index.html"
           ><img
@@ -52,13 +52,13 @@
         <div class="collapse navbar-collapse" id="navbarMain">
           <ul class="navbar-nav mx-auto text-center">
             <li class="nav-item">
-              <a class="nav-link active" href="#home">HOME</a>
+              <a class="nav-link" href="index.html">HOME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#services">SERVICES</a>
+              <a class="nav-link" href="index.html#about">ABOUT US</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#about">ABOUT US</a>
+              <a class="nav-link active" href="services.html">SERVICES</a>
             </li>
 
             <!-- <li class="nav-item dropdown">
@@ -98,304 +98,90 @@
     </nav>
 
     <main data-aos="fade-up">
-      <!-- ===== Hero Carousel ===== -->
-      <section id="home">
-        <div
-          id="heroCarousel"
-          class="carousel slide"
-          data-bs-ride="carousel"
-          data-bs-interval="4000"
-        >
-          <div class="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#heroCarousel"
-              data-bs-slide-to="0"
-              class="active"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#heroCarousel"
-              data-bs-slide-to="1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#heroCarousel"
-              data-bs-slide-to="2"
-            ></button>
-          </div>
-
-          <div class="carousel-inner">
-            <!-- Slide 1 -->
-            <div
-              class="carousel-item active"
-              style="
-                background-image: url('https://images.pexels.com/photos/1421903/pexels-photo-1421903.jpeg');
-              "
-            >
-              <div class="carousel-overlay"></div>
-              <div
-                class="carousel-caption text-white text-center"
-                data-aos="fade-up"
-                data-aos-delay="200"
-              >
-                <h1>Welcome to Our Website</h1>
-                <p>
-                  We provide amazing services just for you.<br />Explore more
-                  about our work below.
-                </p>
-                <a href="#about" class="btn btn-warning">Read More</a>
-              </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div
-              class="carousel-item"
-              style="
-                background-image: url('https://images.pexels.com/photos/1612351/pexels-photo-1612351.jpeg');
-              "
-            >
-              <div class="carousel-overlay"></div>
-              <div
-                class="carousel-caption text-white text-center"
-                data-aos="fade-up"
-                data-aos-delay="200"
-              >
-                <h1>Your Vision, Our Mission</h1>
-                <p>
-                  We turn your ideas into reality with passion.<br />Let's build
-                  something great together.
-                </p>
-                <a href="#projects" class="btn btn-warning">Read More</a>
-              </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div
-              class="carousel-item"
-              style="
-                background-image: url('https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg');
-              "
-            >
-              <div class="carousel-overlay"></div>
-              <div
-                class="carousel-caption text-white text-center"
-                data-aos="fade-up"
-                data-aos-delay="200"
-              >
-                <h1>Join Us Today</h1>
-                <p>
-                  Our expert team is ready to help you.<br />Contact us to get
-                  started.
-                </p>
-                <a href="#contact" class="btn btn-warning">Read More</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Carousel controls -->
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#heroCarousel"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon"></span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#heroCarousel"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon"></span>
-          </button>
-        </div>
-      </section>
-
-      <!-- ===== Services Section ===== -->
-      <section id="services" class="py-5 bg-light" data-aos="fade-up">
+      <!-- ===== Highlights Section  ===== -->
+      <section class="py-5 bg-light" data-aos="fade-up">
         <div class="container">
-          <div class="text-center mb-5">
-            <h2 class="fw-bold">Our Services</h2>
-            <p class="text-muted">
-              We provide top-notch services to simplify your stay and
-              experience.
-            </p>
-          </div>
+          <h2 class="text-center mb-5">Why Choose Us</h2>
           <div class="row g-4">
-            <!-- Service 1 -->
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-              <div
-                class="service-card text-center p-4 h-100 border rounded shadow-sm"
-              >
-                <div class="mb-3">
-                  <i class="bi bi-door-open fs-1 text-primary"></i>
-                </div>
-                <h5 class="fw-semibold mb-2">Room Booking</h5>
-                <p class="text-muted">
-                  Easy and fast room booking with real-time availability
-                  updates.
-                </p>
-              </div>
+            <div class="col-md-4 text-center">
+              <i class="fas fa-camera-retro fa-3x text-warning mb-3"></i>
+              <h5 class="fw-bold">Professional Gear</h5>
+              <p>
+                We use the latest photography equipment to capture stunning
+                shots with precision and quality.
+              </p>
             </div>
-
-            <!-- Service 2 -->
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
-              <div
-                class="service-card text-center p-4 h-100 border rounded shadow-sm"
-              >
-                <div class="mb-3">
-                  <i class="bi bi-person-check fs-1 text-primary"></i>
-                </div>
-                <h5 class="fw-semibold mb-2">24/7 Support</h5>
-                <p class="text-muted">
-                  Our support team is available around the clock to assist you.
-                </p>
-              </div>
+            <div class="col-md-4 text-center">
+              <i class="fas fa-clock fa-3x text-warning mb-3"></i>
+              <h5 class="fw-bold">Quick Turnaround</h5>
+              <p>
+                Get your photos delivered within days with our streamlined
+                post-processing workflow.
+              </p>
             </div>
-
-            <!-- Service 3 -->
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-              <div
-                class="service-card text-center p-4 h-100 border rounded shadow-sm"
-              >
-                <div class="mb-3">
-                  <i class="bi bi-building fs-1 text-primary"></i>
-                </div>
-                <h5 class="fw-semibold mb-2">Corporate Booking</h5>
-                <p class="text-muted">
-                  Customized solutions for companies and business travelers.
-                </p>
-              </div>
-            </div>
-
-            <!-- Service 4 -->
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="250">
-              <div
-                class="service-card text-center p-4 h-100 border rounded shadow-sm"
-              >
-                <div class="mb-3">
-                  <i class="bi bi-building fs-1 text-primary"></i>
-                </div>
-                <h5 class="fw-semibold mb-2">shoots</h5>
-                <p class="text-muted">Customized shoots available.</p>
-              </div>
+            <div class="col-md-4 text-center">
+              <i class="fas fa-heart fa-3x text-warning mb-3"></i>
+              <h5 class="fw-bold">Passion & Creativity</h5>
+              <p>
+                Every project is treated as art. We pour our hearts into making
+                your memories unforgettable.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ===== About Section  ===== -->
-      <section id="about" class="py-5">
+      <!-- ===== Testimonials Section  ===== -->
+      <section class="py-5" data-aos="fade-up">
         <div class="container">
-          <div class="row align-items-center">
-            <!-- Left Column -->
-            <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
-              <h5 class="text-uppercase text-primary fw-bold mb-3">About Us</h5>
-
-              <!-- Tabs -->
-              <ul class="nav nav-tabs mb-3" id="aboutTabs" role="tablist">
-                <li class="nav-item" role="presentation" data-aos="fade-down">
-                  <button
-                    class="nav-link active"
-                    id="company-tab"
-                    data-bs-toggle="tab"
-                    data-bs-target="#company"
-                    type="button"
-                    role="tab"
-                  >
-                    Our Company
-                  </button>
-                </li>
-                <li
-                  class="nav-item"
-                  role="presentation"
-                  data-aos="fade-down"
-                  data-aos-delay="100"
-                >
-                  <button
-                    class="nav-link"
-                    id="mission-tab"
-                    data-bs-toggle="tab"
-                    data-bs-target="#mission"
-                    type="button"
-                    role="tab"
-                  >
-                    Our Mission
-                  </button>
-                </li>
-                <li
-                  class="nav-item"
-                  role="presentation"
-                  data-aos="fade-down"
-                  data-aos-delay="200"
-                >
-                  <button
-                    class="nav-link"
-                    id="vision-tab"
-                    data-bs-toggle="tab"
-                    data-bs-target="#vision"
-                    type="button"
-                    role="tab"
-                  >
-                    Our Vision
-                  </button>
-                </li>
-              </ul>
-
-              <!-- Tab Content -->
-              <div class="tab-content" id="aboutTabsContent">
-                <!-- Our Company -->
-                <div
-                  class="tab-pane fade show active"
-                  id="company"
-                  role="tabpanel"
-                >
-                  <h3>Who We Are</h3>
-                  <p>
-                    We are a modern room booking platform providing fast,
-                    affordable, and seamless booking experiences across
-                    locations.
-                  </p>
-                  <a href="#" class="btn btn-outline-primary">Learn More</a>
-                </div>
-
-                <!-- Our Mission -->
-                <div class="tab-pane fade" id="mission" role="tabpanel">
-                  <h3>Our Mission</h3>
-                  <p>
-                    To deliver a reliable, customer-first room reservation
-                    system that simplifies travel and accommodation for
-                    everyone.
-                  </p>
-                  <a href="#" class="btn btn-outline-primary">Learn More</a>
-                </div>
-
-                <!-- Our Vision -->
-                <div class="tab-pane fade" id="vision" role="tabpanel">
-                  <h3>Our Vision</h3>
-                  <p>
-                    To become the most trusted digital accommodation partner
-                    globally, offering exceptional service and convenience.
-                  </p>
-                  <a href="#" class="btn btn-outline-primary">Learn More</a>
-                </div>
-              </div>
+          <h2 class="text-center mb-5">What Clients Say</h2>
+          <div class="row g-4">
+            <div class="col-md-6">
+              <blockquote class="blockquote p-4 border rounded bg-light">
+                <p>
+                  "Absolutely loved working with YourStudio! They made our
+                  wedding so special."
+                </p>
+                <footer class="blockquote-footer">Riya Mehra</footer>
+              </blockquote>
             </div>
+            <div class="col-md-6">
+              <blockquote class="blockquote p-4 border rounded bg-light">
+                <p>
+                  "Professional, creative, and punctual. Our corporate shoot
+                  turned out amazing."
+                </p>
+                <footer class="blockquote-footer">Karan Malhotra</footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <!-- Right Column (Image) -->
-            <div
-              class="col-lg-6 text-center"
-              data-aos="fade-left"
-              data-aos-delay="200"
-            >
+      <!-- ===== Contact Section  ===== -->
+      <section class="py-5 bg-light" data-aos="fade-up">
+        <div class="container">
+          <h2 class="text-center mb-5">Our Recent Work</h2>
+          <div class="row g-3">
+            <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
               <img
-                src="https://images.pexels.com/photos/15891673/pexels-photo-15891673.jpeg"
-                width="500"
-                height="500"
-                alt="About Us"
+                src="https://images.pexels.com/photos/3872626/pexels-photo-3872626.jpeg"
                 class="img-fluid rounded"
+                alt="work 1"
+              />
+            </div>
+            <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="200">
+              <img
+                src="https://images.pexels.com/photos/33045/lion-wild-africa-african.jpg"
+                class="img-fluid rounded"
+                alt="work 2"
+              />
+            </div>
+            <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="300">
+              <img
+                src="https://images.pexels.com/photos/4096537/pexels-photo-4096537.jpeg"
+                class="img-fluid rounded"
+                alt="work 3"
               />
             </div>
           </div>
@@ -524,7 +310,7 @@
               >
             </p>
             <p>
-              <a href="about.html" class="text-white text-decoration-none"
+              <a href="index.html#about" class="text-white text-decoration-none"
                 >About Us</a
               >
             </p>

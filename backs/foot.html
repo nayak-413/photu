@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Footer Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Outfit", sans-serif;
+        background: #111;
+        color: #eee;
+      }
+
+      .footer {
+        background: #1e1e1e;
+        padding: 50px 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        border-top: 1px solid #333;
+      }
+
+      .footer h3 {
+        font-weight: bold;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #00aaff;
+        display: inline-block;
+        padding-bottom: 5px;
+      }
+
+      .footer-column {
+        flex: 1 1 200px;
+        margin: 10px;
+      }
+
+      .footer-column ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-column ul li {
+        margin: 8px 0;
+      }
+
+      .footer-column ul li a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-column ul li a:hover {
+        color: #00aaff;
+      }
+
+      .footer .contact-info i {
+        margin-right: 8px;
+        color: #00aaff;
+      }
+
+      .qr-code img {
+        width: 130px;
+        height: 130px;
+        margin-top: 10px;
+        border: 4px solid white;
+      }
+
+      .footer-bottom {
+        background: #111;
+        text-align: center;
+        padding: 15px;
+        font-size: 14px;
+        color: #aaa;
+      }
+
+      .social-icons a {
+        color: #fff;
+        margin: 0 10px;
+        display: inline-block;
+        transition: transform 0.2s;
+      }
+
+      .social-icons a:hover {
+        transform: scale(1.2);
+        color: #00aaff;
+      }
+
+      @media (max-width: 768px) {
+        .footer {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .footer-column {
+          margin-bottom: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer">
+        <!-- Useful Links -->
+        <div class="footer-column">
+          <h3>Useful Links</h3>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Technologies</a></li>
+            <li><a href="#">Clients</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div class="footer-column">
+          <h3>Our Services</h3>
+          <ul>
+            <li><a href="#">IT Solutions</a></li>
+            <li><a href="#">ERP Solutions</a></li>
+            <li><a href="#">Cloud Services</a></li>
+            <li><a href="#">Software Development</a></li>
+            <li><a href="#">Application Maintenance</a></li>
+            <li><a href="#">Staffing Solutions</a></li>
+            <li><a href="#">Testing</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Us -->
+        <div class="footer-column contact-info">
+          <h3>Contact Us</h3>
+          <p><strong>USA</strong></p>
+          <p>
+            <i class="fas fa-map-marker-alt"></i> 11020 David Taylor Drive,
+            Suite 302, Charlotte, NC 28262
+          </p>
+          <p><i class="fas fa-phone"></i> (704)764-0999</p>
+          <p><i class="fas fa-phone"></i> 704-259-9900</p>
+          <p><i class="fas fa-envelope"></i> info@ngstek.com</p>
+          <br />
+          <p><strong>India</strong></p>
+          <p>
+            <i class="fas fa-map-marker-alt"></i> HiTech City, Madhapur,
+            Hyderabad, Telangana, India – 500081
+          </p>
+          <p><i class="fas fa-phone"></i> 704-709-9899</p>
+          <p><i class="fas fa-phone"></i> 704-259-9900</p>
+          <p><i class="fas fa-envelope"></i> info@ngstek.com</p>
+        </div>
+
+        <!-- QR Code -->
+        <div class="footer-column qr-code">
+          <h3>Scan and Add to Your Contacts</h3>
+          <img
+            src="https://chart.googleapis.com/chart?cht=qr&chs=160x160&chl=mailto:info@ngstek.com"
+            alt="QR Code"
+          />
+        </div>
+      </div>
+
+      <!-- Bottom -->
+      <div class="footer-bottom">
+        © 2025 Copyright <strong>NextGen Solutions</strong> | Developed by
+        <strong>Nextgen Solutions</strong> <br /><br />
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook fa-lg"></i></a>
+          <a href="#"><i class="fab fa-twitter fa-lg"></i></a>
+          <a href="#"><i class="fab fa-linkedin fa-lg"></i></a>
+          <a href="#"><i class="fab fa-instagram fa-lg"></i></a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
