@@ -52,13 +52,13 @@
         <div class="collapse navbar-collapse" id="navbarMain">
           <ul class="navbar-nav mx-auto text-center">
             <li class="nav-item">
-              <a class="nav-link active" href="#home">HOME</a>
+              <a class="nav-link active" href="index.html">HOME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="packages.html">PACKAGES</a>
+              <a class="nav-link" href="#packages">PACKAGES</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">ABOUT US</a>
+              <a class="nav-link" href="#about">ABOUT US</a>
             </li>
 
             <!-- <li class="nav-item dropdown">
@@ -98,118 +98,76 @@
     </nav>
 
     <main data-aos="fade-up">
-      <!-- ===== Hero Carousel ===== -->
-      <section id="home">
-        <div
-          id="heroCarousel"
-          class="carousel slide"
-          data-bs-ride="carousel"
-          data-bs-interval="7000"
-        >
-          <div class="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#heroCarousel"
-              data-bs-slide-to="0"
-              class="active"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#heroCarousel"
-              data-bs-slide-to="1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#heroCarousel"
-              data-bs-slide-to="2"
-            ></button>
+      <!-- ===== Packages Section ===== -->
+      <section id="packages" class="py-5 bg-light" data-aos="fade-up">
+        <div class="container">
+          <div class="text-center mb-5">
+            <h2 class="fw-bold">Our Packages</h2>
+            <p class="text-muted">
+              We provide top-notch packages to simplify your stay and
+              experience.
+            </p>
           </div>
-
-          <div class="carousel-inner">
-            <!-- Slide 1 -->
-            <div
-              class="carousel-item active"
-              style="
-                background-image: url('https://images.pexels.com/photos/1421903/pexels-photo-1421903.jpeg');
-              "
-            >
-              <div class="carousel-overlay"></div>
+          <div class="row g-4">
+            <!-- Service 1 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
               <div
-                class="carousel-caption text-white text-center"
-                data-aos="fade-up"
-                data-aos-delay="200"
+                class="service-card text-center p-4 h-100 border rounded shadow-sm"
               >
-                <h1>Welcome to Our Website</h1>
-                <p>
-                  We provide amazing packages just for you.<br />Explore more
-                  about our work below.
+                <div class="mb-3">
+                  <i class="bi bi-door-open fs-1 text-primary"></i>
+                </div>
+                <h5 class="fw-semibold mb-2">Room Booking</h5>
+                <p class="text-muted">
+                  Easy and fast room booking with real-time availability
+                  updates.
                 </p>
-                <a href="#about" class="btn btn-warning">Read More</a>
               </div>
             </div>
 
-            <!-- Slide 2 -->
-            <div
-              class="carousel-item"
-              style="
-                background-image: url('https://images.pexels.com/photos/1612351/pexels-photo-1612351.jpeg');
-              "
-            >
-              <div class="carousel-overlay"></div>
+            <!-- Service 2 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
               <div
-                class="carousel-caption text-white text-center"
-                data-aos="fade-up"
-                data-aos-delay="200"
+                class="service-card text-center p-4 h-100 border rounded shadow-sm"
               >
-                <h1>Your Vision, Our Mission</h1>
-                <p>
-                  We turn your ideas into reality with passion.<br />Let's build
-                  something great together.
+                <div class="mb-3">
+                  <i class="bi bi-person-check fs-1 text-primary"></i>
+                </div>
+                <h5 class="fw-semibold mb-2">24/7 Support</h5>
+                <p class="text-muted">
+                  Our support team is available around the clock to assist you.
                 </p>
-                <a href="#projects" class="btn btn-warning">Read More</a>
               </div>
             </div>
 
-            <!-- Slide 3 -->
-            <div
-              class="carousel-item"
-              style="
-                background-image: url('https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg');
-              "
-            >
-              <div class="carousel-overlay"></div>
+            <!-- Service 3 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
               <div
-                class="carousel-caption text-white text-center"
-                data-aos="fade-up"
-                data-aos-delay="200"
+                class="service-card text-center p-4 h-100 border rounded shadow-sm"
               >
-                <h1>Join Us Today</h1>
-                <p>
-                  Our expert team is ready to help you.<br />Contact us to get
-                  started.
+                <div class="mb-3">
+                  <i class="bi bi-building fs-1 text-primary"></i>
+                </div>
+                <h5 class="fw-semibold mb-2">Corporate Booking</h5>
+                <p class="text-muted">
+                  Customized solutions for companies and business travelers.
                 </p>
-                <a href="#contact" class="btn btn-warning">Read More</a>
+              </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="250">
+              <div
+                class="service-card text-center p-4 h-100 border rounded shadow-sm"
+              >
+                <div class="mb-3">
+                  <i class="bi bi-building fs-1 text-primary"></i>
+                </div>
+                <h5 class="fw-semibold mb-2">shoots</h5>
+                <p class="text-muted">Customized shoots available.</p>
               </div>
             </div>
           </div>
-
-          <!-- Carousel controls -->
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#heroCarousel"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon"></span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#heroCarousel"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon"></span>
-          </button>
         </div>
       </section>
 

@@ -69,3 +69,13 @@ const observer = new IntersectionObserver(
 );
 
 sections.forEach((section) => observer.observe(section));
+
+// For the Carousel
+const heroCarousel = document.querySelector("#heroCarousel");
+new bootstrap.Carousel(heroCarousel, {
+  interval: 4000,
+  pause: false,
+  ride: "carousel",
+  wrap: true,
+  touch: false,
+});
