@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testimonials Section</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Your existing CSS remains the same */
+      #testimonials {
+        background: #f8f9fa;
+        padding: 4rem 0;
+      }
+      .testimonials-container {
+        overflow: hidden;
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .testimonials-banner {
+        display: flex;
+        gap: 1.5rem;
+        /* Remove animation and padding-left from here; JS will handle it */
+        will-change: transform;
+        transform: translateZ(0);
+      }
+      .testimonial-card {
+        flex: 0 0 auto;
+        width: 300px;
+        min-height: 160px;
+        white-space: normal;
+        background: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: 0.5rem;
+        padding: 2rem 1.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+      .testimonial-card::before {
+        content: "“";
+        font-size: 2.5rem;
+        color: #6c757d;
+        position: absolute;
+        top: 0.5rem;
+        left: 1rem;
+        opacity: 0.3;
+      }
+      .testimonial-card p {
+        font-size: 1rem;
+        color: #343a40;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+      }
+      .testimonial-card h6 {
+        font-size: 0.9rem;
+        color: #28a745;
+        font-weight: 600;
+      }
+
+      .testimonials-container.is-animating .testimonial-card {
+        contain: paint;
+      }
+
+      .nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.25rem;
+        z-index: 10;
+        transition: background 0.3s ease, transform 0.3s ease;
+      }
+      .nav-btn:hover {
+        background: #218838;
+        transform: translateY(-50%) scale(1.1);
+      }
+      .nav-btn.prev {
+        left: 10px;
+      }
+      .nav-btn.next {
+        right: 10px;
+      }
+      @media (max-width: 768px) {
+        .testimonial-card {
+          width: 250px;
+        }
+        .nav-btn {
+          width: 32px;
+          height: 32px;
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section id="testimonials" class="py-5 bg-light">
+      <div class="container">
+        <h2
+          class="text-center mb-4 fw-bold"
+          data-aos="fade-down"
+          data-aos-delay="300"
+        >
+          Client Testimonials
+        </h2>
+        <div class="testimonials-container">
+          <button class="nav-btn prev" aria-label="Previous testimonial">
+            &#10094;
+          </button>
+          <div class="testimonials-banner">
+            <div class="testimonial-card">
+              <p>"Our photos are a treasure we’ll cherish forever."</p>
+              <h6 class="mb-0">- Shalini Desai</h6>
+            </div>
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <p>
+                "Amazing experience! The team captured our special day
+                perfectly."
+              </p>
+              <h6 class="mb-0">- Priya & Karan</h6>
+            </div>
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <p>"Highly professional and creative. Loved every shot!"</p>
+              <h6 class="mb-0">- Rohan Mehta</h6>
+            </div>
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="500"
+            >
+              <p>
+                "Their attention to detail made our wedding photos magical."
+              </p>
+              <h6 class="mb-0">- Anika Sharma</h6>
+            </div>
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="600"
+            >
+              <p>"The video montage was beyond our expectations!"</p>
+              <h6 class="mb-0">- Vikram Singh</h6>
+            </div>
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="700"
+            >
+              <p>
+                "Such a fun team to work with, and the results were stunning."
+              </p>
+              <h6 class="mb-0">- Meera Patel</h6>
+            </div>
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="800"
+            >
+              <p>"They turned our event into a timeless story."</p>
+              <h6 class="mb-0">- Arjun & Neha</h6>
+            </div>
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="900"
+            >
+              <p>"Exceptional quality and service. Highly recommend!"</p>
+              <h6 class="mb-0">- Sanjay Kumar</h6>
+            </div>
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="1000"
+            >
+              <p>"Every moment was captured with such creativity."</p>
+              <h6 class="mb-0">- Riya Gupta</h6>
+            </div>
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="1100"
+            >
+              <p>"Professional, punctual, and incredibly talented."</p>
+              <h6 class="mb-0">- Aditya Rao</h6>
+            </div>
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="1200"
+            >
+              <p>"Our photos are a treasure we’ll cherish forever."</p>
+              <h6 class="mb-0">- Shalini Desai</h6>
+            </div>
+            <div class="testimonial-card">
+              <p>
+                "Amazing experience! The team captured our special day
+                perfectly."
+              </p>
+              <h6 class="mb-0">- Priya & Karan</h6>
+            </div>
+          </div>
+          <button class="nav-btn next" aria-label="Next testimonial">
+            &#10095;
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: "ease-in-out",
+        once: true,
+      });
+
+      const container = document.querySelector(".testimonials-container");
+      const banner = document.querySelector(".testimonials-banner");
+      const prevBtn = document.querySelector(".nav-btn.prev");
+      const nextBtn = document.querySelector(".nav-btn.next");
+
+      const totalOriginalCards = 10;
+      const autoScrollIntervalTime = 5000;
+
+      let currentIndex = 1;
+      let isTransitioning = false;
+      let autoScrollInterval;
+
+      function getMetrics() {
+        const cardWidth = banner.children[0].offsetWidth;
+        const cardGap = 24;
+        const step = cardWidth + cardGap;
+        const offset = (container.offsetWidth - cardWidth) / 2;
+        return { step, offset };
+      }
+
+      function handleLooping() {
+        if (currentIndex > totalOriginalCards) {
+          currentIndex = 1;
+          setPosition(false);
+        }
+        if (currentIndex <= 0) {
+          currentIndex = totalOriginalCards;
+          setPosition(false);
+        }
+      }
+
+      function setPosition(animate = true) {
+        const { step, offset } = getMetrics();
+        const transformValue = offset - currentIndex * step;
+
+        if (animate) {
+          gsap.to(banner, {
+            duration: 0.7, // Slightly faster for a more responsive feel
+            x: transformValue,
+            ease: "power3.inOut",
+            onStart: () => {
+              // Add the optimization class when animation starts
+              container.classList.add("is-animating");
+            },
+            onComplete: () => {
+              // Remove the class when it's done
+              container.classList.remove("is-animating");
+              isTransitioning = false;
+              handleLooping();
+            },
+          });
+        } else {
+          gsap.set(banner, { x: transformValue });
+        }
+      }
+
+      function moveSlider(direction) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex += direction;
+        setPosition(true);
+      }
+
+      function startAutoScroll() {
+        clearInterval(autoScrollInterval);
+        autoScrollInterval = setInterval(
+          () => moveSlider(1),
+          autoScrollIntervalTime
+        );
+      }
+
+      function stopAutoScroll() {
+        clearInterval(autoScrollInterval);
+      }
+
+      // --- Event Listeners ---
+      prevBtn.addEventListener("click", () => {
+        stopAutoScroll();
+        moveSlider(-1);
+        startAutoScroll();
+      });
+
+      nextBtn.addEventListener("click", () => {
+        stopAutoScroll();
+        moveSlider(1);
+        startAutoScroll();
+      });
+
+      container.addEventListener("mouseenter", stopAutoScroll);
+      container.addEventListener("mouseleave", startAutoScroll);
+
+      window.addEventListener("load", () => {
+        setPosition(false);
+        startAutoScroll();
+      });
+
+      window.addEventListener("resize", () => setPosition(false));
+    </script>
+  </body>
+</html>
