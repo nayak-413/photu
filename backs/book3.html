@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photography Booking Form - Single Page</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        /* Light theme colors */
+        --primary-color: #6366f1;
+        --secondary-color: #8b5cf6;
+        --accent-color: #f59e0b;
+        --success-color: #10b981;
+        --text-dark: #1f2937;
+        --text-light: #6b7280;
+        --bg-light: #f8fafc;
+        --card-bg: #ffffff;
+        --border-color: #e5e7eb;
+        --input-bg: #fafafa;
+        --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      [data-theme="dark"] {
+        /* Dark theme colors */
+        --primary-color: #818cf8;
+        --secondary-color: #a78bfa;
+        --accent-color: #fbbf24;
+        --success-color: #34d399;
+        --text-dark: #f9fafb;
+        --text-light: #d1d5db;
+        --bg-light: #111827;
+        --card-bg: #1f2937;
+        --border-color: #374151;
+        --input-bg: #374151;
+        --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+          0 10px 10px -5px rgba(0, 0, 0, 0.2);
+      }
+
+      * {
+        transition: background-color 0.3s ease, color 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(
+          135deg,
+          var(--bg-light) 0%,
+          var(--border-color) 100%
+        );
+        min-height: 100vh;
+        color: var(--text-dark);
+      }
+
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        background: var(--card-bg);
+        border: 2px solid var(--border-color);
+        border-radius: 50px;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+      }
+
+      .theme-toggle:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
+      }
+
+      .theme-icon {
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+      }
+
+      .theme-icon.sun {
+        color: #f59e0b;
+      }
+
+      .theme-icon.moon {
+        color: #6366f1;
+      }
+
+      .toggle-switch {
+        width: 50px;
+        height: 24px;
+        background: var(--border-color);
+        border-radius: 12px;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .toggle-switch::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: var(--card-bg);
+        border-radius: 50%;
+        top: 2px;
+        left: 2px;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      [data-theme="dark"] .toggle-switch {
+        background: var(--primary-color);
+      }
+
+      [data-theme="dark"] .toggle-switch::after {
+        transform: translateX(26px);
+      }
+
+      .form-container {
+        max-width: 1000px;
+        margin: 2rem auto;
+        background: var(--card-bg);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .form-header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--secondary-color) 100%
+        );
+        color: white;
+        padding: 3rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .form-header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 70%
+        );
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(180deg);
+        }
+      }
+
+      .form-header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: 700;
+        position: relative;
+        z-index: 1;
+      }
+
+      .form-header p {
+        margin: 1rem 0 0 0;
+        opacity: 0.9;
+        font-size: 1.1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .form-content {
+        padding: 3rem 2rem;
+      }
+
+      .section-title {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .section-title i {
+        font-size: 1.2rem;
+      }
+
+      .form-section {
+        background: var(--input-bg);
+        border-radius: 16px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 1px solid var(--border-color);
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-label {
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      .form-control {
+        border: 2px solid var(--border-color);
+        border-radius: 12px;
+        padding: 0.875rem 1rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: var(--card-bg);
+        color: var(--text-dark);
+      }
+
+      .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        background: var(--card-bg);
+        color: var(--text-dark);
+      }
+
+      .form-control::placeholder {
+        color: var(--text-light);
+      }
+
+      .addon-selection {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1rem;
+      }
+
+      .addon-card {
+        border: 2px solid var(--border-color);
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: var(--card-bg);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .addon-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(99, 102, 241, 0.1),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .addon-card:hover::before {
+        left: 100%;
+      }
+
+      .addon-card:hover {
+        border-color: var(--primary-color);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(99, 102, 241, 0.15);
+      }
+
+      .addon-card.selected {
+        border-color: var(--primary-color);
+        background: rgba(99, 102, 241, 0.05);
+        transform: translateY(-3px);
+      }
+
+      .addon-icon {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .addon-title {
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: var(--text-dark);
+        position: relative;
+        z-index: 1;
+      }
+
+      .addon-description {
+        color: var(--text-light);
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .addon-price {
+        color: var(--accent-color);
+        font-weight: 700;
+        font-size: 1.2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .btn-custom {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--secondary-color) 100%
+        );
+        border: none;
+        color: white;
+        padding: 1rem 3rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 1.1rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-custom::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .btn-custom:hover::before {
+        left: 100%;
+      }
+
+      .btn-custom:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
+        color: white;
+      }
+
+      .thank-you-page {
+        display: none;
+        text-align: center;
+        padding: 4rem 2rem;
+      }
+
+      .thank-you-page.active {
+        display: block;
+        animation: fadeIn 0.8s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .success-icon {
+        font-size: 5rem;
+        color: var(--success-color);
+        margin-bottom: 2rem;
+        animation: bounce 1s ease;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-30px);
+        }
+        60% {
+          transform: translateY(-15px);
+        }
+      }
+
+      .booking-summary {
+        background: var(--input-bg);
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 2rem 0;
+        text-align: left;
+        border: 1px solid var(--border-color);
+      }
+
+      .summary-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .summary-item:last-child {
+        border-bottom: none;
+        font-weight: 700;
+        color: var(--primary-color);
+        font-size: 1.2rem;
+      }
+
+      .loading-spinner {
+        display: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ffffff;
+        border-top: 2px solid transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-right: 0.5rem;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .floating-elements {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .floating-element {
+        position: absolute;
+        opacity: 0.1;
+        animation: floatAround 15s infinite linear;
+      }
+
+      @keyframes floatAround {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+        }
+      }
+
+      /* Entry Animations */
+      @keyframes slideInFromTop {
+        0% {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInFromLeft {
+        0% {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInFromRight {
+        0% {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInFromBottom {
+        0% {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes scaleIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes rotateIn {
+        0% {
+          opacity: 0;
+          transform: rotate(-10deg) scale(0.9);
+        }
+        100% {
+          opacity: 1;
+          transform: rotate(0deg) scale(1);
+        }
+      }
+
+      /* Exit Animations */
+      @keyframes slideOutToTop {
+        0% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+      }
+
+      @keyframes slideOutToLeft {
+        0% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+      }
+
+      @keyframes slideOutToRight {
+        0% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+      }
+
+      @keyframes slideOutToBottom {
+        0% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+      }
+
+      @keyframes scaleOut {
+        0% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+      }
+
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      /* Animation Classes */
+      .animate-slide-in-top {
+        animation: slideInFromTop 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+          forwards;
+      }
+
+      .animate-slide-in-left {
+        animation: slideInFromLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+          forwards;
+      }
+
+      .animate-slide-in-right {
+        animation: slideInFromRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+          forwards;
+      }
+
+      .animate-slide-in-bottom {
+        animation: slideInFromBottom 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+          forwards;
+      }
+
+      .animate-scale-in {
+        animation: scaleIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      }
+
+      .animate-rotate-in {
+        animation: rotateIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      }
+
+      .animate-slide-out-top {
+        animation: slideOutToTop 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+          forwards;
+      }
+
+      .animate-slide-out-left {
+        animation: slideOutToLeft 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+          forwards;
+      }
+
+      .animate-slide-out-right {
+        animation: slideOutToRight 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+          forwards;
+      }
+
+      .animate-slide-out-bottom {
+        animation: slideOutToBottom 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+          forwards;
+      }
+
+      .animate-scale-out {
+        animation: scaleOut 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+      }
+
+      .animate-fade-out {
+        animation: fadeOut 0.5s ease-out forwards;
+      }
+
+      /* Staggered Animation Delays */
+      .animate-delay-100 {
+        animation-delay: 0.1s;
+      }
+      .animate-delay-200 {
+        animation-delay: 0.2s;
+      }
+      .animate-delay-300 {
+        animation-delay: 0.3s;
+      }
+      .animate-delay-400 {
+        animation-delay: 0.4s;
+      }
+      .animate-delay-500 {
+        animation-delay: 0.5s;
+      }
+      .animate-delay-600 {
+        animation-delay: 0.6s;
+      }
+      .animate-delay-700 {
+        animation-delay: 0.7s;
+      }
+      .animate-delay-800 {
+        animation-delay: 0.8s;
+      }
+
+      /* Initial hidden state for animated elements */
+      .animate-on-load {
+        opacity: 0;
+      }
+
+      /* Smooth transitions for theme switching */
+      .theme-transition {
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      @media (max-width: 768px) {
+        .form-container {
+          margin: 1rem;
+          border-radius: 16px;
+        }
+
+        .form-header {
+          padding: 2rem 1rem;
+        }
+
+        .form-header h1 {
+          font-size: 2rem;
+        }
+
+        .form-content {
+          padding: 2rem 1rem;
+        }
+
+        .form-section {
+          padding: 1.5rem;
+        }
+
+        .addon-selection {
+          grid-template-columns: 1fr;
+        }
+
+        .theme-toggle {
+          top: 10px;
+          right: 10px;
+          padding: 6px 12px;
+        }
+      }
+
+      .pulse-animation {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+      <i class="fas fa-sun theme-icon sun"></i>
+      <div class="toggle-switch"></div>
+      <i class="fas fa-moon theme-icon moon"></i>
+    </div>
+
+    <div class="container-fluid">
+      <div class="form-container">
+        <!-- Floating Background Elements -->
+        <div class="floating-elements">
+          <i
+            class="fas fa-camera floating-element"
+            style="left: 10%; animation-delay: 0s; font-size: 2rem"
+          ></i>
+          <i
+            class="fas fa-heart floating-element"
+            style="left: 80%; animation-delay: 3s; font-size: 1.5rem"
+          ></i>
+          <i
+            class="fas fa-star floating-element"
+            style="left: 60%; animation-delay: 6s; font-size: 1.8rem"
+          ></i>
+          <i
+            class="fas fa-image floating-element"
+            style="left: 30%; animation-delay: 9s; font-size: 2.2rem"
+          ></i>
+          <i
+            class="fas fa-palette floating-element"
+            style="left: 70%; animation-delay: 12s; font-size: 1.6rem"
+          ></i>
+        </div>
+
+        <!-- Header -->
+        <div
+          class="form-header animate-on-load animate-slide-in-top theme-transition"
+        >
+          <h1><i class="fas fa-camera"></i> Book Your Photography Session</h1>
+          <p>Complete all details below to secure your perfect photo session</p>
+        </div>
+
+        <!-- Form Content -->
+        <div class="form-content">
+          <form id="bookingForm">
+            <!-- Personal Information Section -->
+            <div
+              class="form-section animate-on-load animate-slide-in-left animate-delay-200 theme-transition"
+            >
+              <h3 class="section-title">
+                <i class="fas fa-user"></i>
+                Personal Information
+              </h3>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label">Full Name *</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="fullName"
+                      required
+                      placeholder="Enter your full name"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label">Email Address *</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      name="email"
+                      required
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Phone Number *</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  name="phone"
+                  required
+                  placeholder="+1 (555) 123-4567"
+                />
+              </div>
+            </div>
+
+            <!-- Session Details Section -->
+            <div
+              class="form-section animate-on-load animate-slide-in-right animate-delay-300 theme-transition"
+            >
+              <h3 class="section-title">
+                <i class="fas fa-calendar-alt"></i>
+                Session Details
+              </h3>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label">Preferred Date *</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      name="sessionDate"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label">Preferred Time</label>
+                    <select class="form-control" name="sessionTime">
+                      <option value="">Select preferred time</option>
+                      <option value="09:00">9:00 AM - Golden Hour</option>
+                      <option value="10:00">10:00 AM - Morning Light</option>
+                      <option value="11:00">11:00 AM - Bright Light</option>
+                      <option value="14:00">2:00 PM - Afternoon</option>
+                      <option value="15:00">3:00 PM - Soft Light</option>
+                      <option value="16:00">4:00 PM - Warm Light</option>
+                      <option value="17:00">5:00 PM - Golden Hour</option>
+                      <option value="18:00">6:00 PM - Sunset</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label">Location *</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="location"
+                      placeholder="e.g., Central Park, Studio, Your home"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label">Session Type</label>
+                    <select class="form-control" name="sessionType">
+                      <option value="portrait">Portrait Session - $300</option>
+                      <option value="family">Family Session - $400</option>
+                      <option value="couple">Couple Session - $350</option>
+                      <option value="event">Event Photography - $500</option>
+                      <option value="corporate">
+                        Corporate Headshots - $250
+                      </option>
+                      <option value="wedding">
+                        Wedding Photography - $1200
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add-ons Section -->
+            <div
+              class="form-section animate-on-load animate-slide-in-left animate-delay-400 theme-transition"
+            >
+              <h3 class="section-title">
+                <i class="fas fa-plus-circle"></i>
+                Enhance Your Experience
+              </h3>
+              <p class="text-muted mb-4">
+                Select any additional services to make your session even more
+                special
+              </p>
+
+              <div class="addon-selection">
+                <div
+                  class="addon-card animate-on-load animate-scale-in animate-delay-500 theme-transition"
+                  data-addon="extra-photos"
+                  data-price="50"
+                >
+                  <div class="addon-icon">
+                    <i class="fas fa-images"></i>
+                  </div>
+                  <div class="addon-title">Extra Photos</div>
+                  <div class="addon-description">
+                    Additional 25 professionally edited photos
+                  </div>
+                  <div class="addon-price">+$50</div>
+                </div>
+
+                <div
+                  class="addon-card animate-on-load animate-scale-in animate-delay-600 theme-transition"
+                  data-addon="rush-delivery"
+                  data-price="75"
+                >
+                  <div class="addon-icon">
+                    <i class="fas fa-bolt"></i>
+                  </div>
+                  <div class="addon-title">Rush Delivery</div>
+                  <div class="addon-description">
+                    Get your photos delivered in just 3 days
+                  </div>
+                  <div class="addon-price">+$75</div>
+                </div>
+
+                <div
+                  class="addon-card animate-on-load animate-scale-in animate-delay-700 theme-transition"
+                  data-addon="prints"
+                  data-price="100"
+                >
+                  <div class="addon-icon">
+                    <i class="fas fa-print"></i>
+                  </div>
+                  <div class="addon-title">Print Package</div>
+                  <div class="addon-description">
+                    10 premium quality prints (8x10)
+                  </div>
+                  <div class="addon-price">+$100</div>
+                </div>
+
+                <div
+                  class="addon-card animate-on-load animate-scale-in animate-delay-800 theme-transition"
+                  data-addon="makeup"
+                  data-price="150"
+                >
+                  <div class="addon-icon">
+                    <i class="fas fa-palette"></i>
+                  </div>
+                  <div class="addon-title">Makeup Artist</div>
+                  <div class="addon-description">
+                    Professional makeup and styling
+                  </div>
+                  <div class="addon-price">+$150</div>
+                </div>
+
+                <div
+                  class="addon-card animate-on-load animate-scale-in animate-delay-500 theme-transition"
+                  data-addon="video"
+                  data-price="200"
+                >
+                  <div class="addon-icon">
+                    <i class="fas fa-video"></i>
+                  </div>
+                  <div class="addon-title">Behind the Scenes</div>
+                  <div class="addon-description">
+                    Short video highlights of your session
+                  </div>
+                  <div class="addon-price">+$200</div>
+                </div>
+
+                <div
+                  class="addon-card animate-on-load animate-scale-in animate-delay-600 theme-transition"
+                  data-addon="album"
+                  data-price="250"
+                >
+                  <div class="addon-icon">
+                    <i class="fas fa-book"></i>
+                  </div>
+                  <div class="addon-title">Photo Album</div>
+                  <div class="addon-description">
+                    Custom designed premium photo album
+                  </div>
+                  <div class="addon-price">+$250</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Information Section -->
+            <div
+              class="form-section animate-on-load animate-slide-in-right animate-delay-500 theme-transition"
+            >
+              <h3 class="section-title">
+                <i class="fas fa-comment-alt"></i>
+                Additional Information
+              </h3>
+
+              <div class="form-group">
+                <label class="form-label">Special Requests or Notes</label>
+                <textarea
+                  class="form-control"
+                  name="specialRequests"
+                  rows="4"
+                  placeholder="Tell us about any special requests, themes, props you'd like to bring, or anything else we should know about your session..."
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">How did you hear about us?</label>
+                <select class="form-control" name="referralSource">
+                  <option value="">Select an option</option>
+                  <option value="google">Google Search</option>
+                  <option value="social">Social Media</option>
+                  <option value="friend">Friend/Family Referral</option>
+                  <option value="website">Photography Website</option>
+                  <option value="advertisement">Advertisement</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Submit Section -->
+            <div
+              class="text-center animate-on-load animate-slide-in-bottom animate-delay-600"
+            >
+              <div
+                class="booking-summary theme-transition"
+                id="liveSummary"
+                style="display: none"
+              >
+                <h5 class="mb-3">
+                  <i class="fas fa-receipt"></i> Booking Summary
+                </h5>
+                <div id="summaryContent"></div>
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-custom pulse-animation theme-transition"
+                id="submitBtn"
+              >
+                <span class="loading-spinner" id="loadingSpinner"></span>
+                <i class="fas fa-camera me-2"></i>
+                Book My Photography Session
+              </button>
+
+              <p class="mt-3 text-muted">
+                <i class="fas fa-shield-alt me-1"></i>
+                Your information is secure and will only be used to process your
+                booking
+              </p>
+            </div>
+          </form>
+        </div>
+
+        <!-- Thank You Page -->
+        <div class="thank-you-page" id="thankYouPage">
+          <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <h2 class="mb-3">🎉 Booking Confirmed!</h2>
+          <p class="lead mb-4">
+            Thank you for choosing us for your photography session!
+          </p>
+
+          <div class="booking-summary">
+            <h5 class="mb-3">
+              <i class="fas fa-receipt"></i> Your Booking Details
+            </h5>
+            <div id="finalBookingSummary"></div>
+          </div>
+
+          <div
+            class="alert alert-info mt-4"
+            style="
+              background: rgba(99, 102, 241, 0.1);
+              border: 1px solid var(--primary-color);
+              color: var(--text-dark);
+            "
+          >
+            <i class="fas fa-info-circle me-2"></i>
+            <strong>What happens next?</strong><br />
+            📧 Confirmation email sent to your inbox<br />
+            📞 We'll call you within 24 hours to finalize details<br />
+            📅 Calendar invite will be sent once confirmed<br />
+            <strong
+              >Booking Reference: <span id="bookingReference"></span
+            ></strong>
+          </div>
+
+          <div
+            class="alert alert-warning mt-3"
+            style="
+              background: rgba(245, 158, 11, 0.1);
+              border: 1px solid var(--accent-color);
+              color: var(--text-dark);
+            "
+          >
+            <i class="fas fa-code me-2"></i>
+            <strong>Demo Mode:</strong> This form is currently in demo mode. In
+            production, you'll need to implement the backend API endpoint
+            <code>/api/bookings</code> to handle database storage and email
+            sending. Check the browser console to see the data that would be
+            processed.
+          </div>
+
+          <div class="mt-4">
+            <button
+              type="button"
+              class="btn btn-custom me-3"
+              onclick="resetForm()"
+            >
+              <i class="fas fa-plus me-2"></i>Book Another Session
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-custom"
+              onclick="window.print()"
+            >
+              <i class="fas fa-print me-2"></i>Print Details
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      let selectedAddons = [];
+      let currentTheme = "light";
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", function () {
+        setupAddonSelection();
+        setMinDate();
+        setupLiveSummary();
+        loadTheme();
+        initializeAnimations();
+      });
+
+      function initializeAnimations() {
+        // Trigger entry animations on page load
+        setTimeout(() => {
+          const animatedElements =
+            document.querySelectorAll(".animate-on-load");
+          animatedElements.forEach((element) => {
+            element.style.opacity = "1";
+          });
+        }, 100);
+
+        // Setup intersection observer for scroll-triggered animations
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        // Observe elements that should animate on scroll
+        const scrollAnimatedElements =
+          document.querySelectorAll(".animate-on-scroll");
+        scrollAnimatedElements.forEach((element) => {
+          observer.observe(element);
+        });
+      }
+
+      function toggleTheme() {
+        // Add transition class to body for smooth theme change
+        document.body.style.transition =
+          "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+        currentTheme = currentTheme === "light" ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", currentTheme);
+        localStorage.setItem("theme", currentTheme);
+
+        // Add a subtle animation to the toggle button
+        const toggle = document.querySelector(".theme-toggle");
+        toggle.style.transform = "scale(0.95)";
+
+        setTimeout(() => {
+          toggle.style.transform = "scale(1)";
+        }, 150);
+
+        // Remove transition after theme change is complete
+        setTimeout(() => {
+          document.body.style.transition = "";
+        }, 400);
+      }
+
+      function loadTheme() {
+        const savedTheme = localStorage.getItem("theme") || "light";
+        currentTheme = savedTheme;
+        document.documentElement.setAttribute("data-theme", currentTheme);
+      }
+
+      function setMinDate() {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const dateInput = document.querySelector('input[name="sessionDate"]');
+        dateInput.min = tomorrow.toISOString().split("T")[0];
+      }
+
+      function setupAddonSelection() {
+        document.querySelectorAll(".addon-card").forEach((card) => {
+          card.addEventListener("click", function () {
+            const addon = this.dataset.addon;
+            const price = parseInt(this.dataset.price);
+
+            if (this.classList.contains("selected")) {
+              this.classList.remove("selected");
+              selectedAddons = selectedAddons.filter(
+                (item) => item.addon !== addon
+              );
+            } else {
+              this.classList.add("selected");
+              selectedAddons.push({
+                addon: addon,
+                title: this.querySelector(".addon-title").textContent,
+                price: price,
+              });
+            }
+            updateLiveSummary();
+          });
+        });
+      }
+
+      function setupLiveSummary() {
+        const form = document.getElementById("bookingForm");
+        const inputs = form.querySelectorAll("input, select, textarea");
+
+        inputs.forEach((input) => {
+          input.addEventListener("input", updateLiveSummary);
+          input.addEventListener("change", updateLiveSummary);
+        });
+      }
+
+      function updateLiveSummary() {
+        const formData = new FormData(document.getElementById("bookingForm"));
+        const summaryDiv = document.getElementById("liveSummary");
+        const summaryContent = document.getElementById("summaryContent");
+
+        const name = formData.get("fullName");
+        const email = formData.get("email");
+        const date = formData.get("sessionDate");
+        const sessionType = formData.get("sessionType");
+
+        if (name || email || date || sessionType || selectedAddons.length > 0) {
+          summaryDiv.style.display = "block";
+
+          let basePrice = getSessionPrice(sessionType);
+          let totalPrice = basePrice;
+
+          let summaryHTML = "";
+
+          if (name)
+            summaryHTML += `<div class="summary-item"><span><strong>Name:</strong></span><span>${name}</span></div>`;
+          if (email)
+            summaryHTML += `<div class="summary-item"><span><strong>Email:</strong></span><span>${email}</span></div>`;
+          if (date)
+            summaryHTML += `<div class="summary-item"><span><strong>Date:</strong></span><span>${formatDate(
+              date
+            )}</span></div>`;
+          if (sessionType) {
+            summaryHTML += `<div class="summary-item"><span><strong>Session:</strong></span><span>${formatSessionType(
+              sessionType
+            )}</span></div>`;
+            summaryHTML += `<div class="summary-item"><span><strong>Base Price:</strong></span><span>$${basePrice}</span></div>`;
+          }
+
+          selectedAddons.forEach((addon) => {
+            totalPrice += addon.price;
+            summaryHTML += `<div class="summary-item"><span>${addon.title}:</span><span>+$${addon.price}</span></div>`;
+          });
+
+          if (sessionType) {
+            summaryHTML += `<div class="summary-item"><span><strong>Total Amount:</strong></span><span><strong>$${totalPrice}</strong></span></div>`;
+          }
+
+          summaryContent.innerHTML = summaryHTML;
+        } else {
+          summaryDiv.style.display = "none";
+        }
+      }
+
+      function getSessionPrice(sessionType) {
+        const prices = {
+          portrait: 300,
+          family: 400,
+          couple: 350,
+          event: 500,
+          corporate: 250,
+          wedding: 1200,
+        };
+        return prices[sessionType] || 300;
+      }
+
+      function formatDate(dateString) {
+        if (!dateString) return "";
+        const date = new Date(dateString);
+        return date.toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+      }
+
+      function formatSessionType(type) {
+        const types = {
+          portrait: "Portrait Session",
+          family: "Family Session",
+          couple: "Couple Session",
+          event: "Event Photography",
+          corporate: "Corporate Headshots",
+          wedding: "Wedding Photography",
+        };
+        return types[type] || type;
+      }
+
+      function validateForm() {
+        const requiredFields = document.querySelectorAll(
+          "input[required], select[required]"
+        );
+        let isValid = true;
+
+        requiredFields.forEach((field) => {
+          if (!field.value.trim()) {
+            field.style.borderColor = "#ef4444";
+            field.style.boxShadow = "0 0 0 3px rgba(239, 68, 68, 0.1)";
+            isValid = false;
+
+            // Add shake animation
+            field.style.animation = "shake 0.5s ease-in-out";
+            setTimeout(() => {
+              field.style.animation = "";
+            }, 500);
+          } else {
+            field.style.borderColor = "var(--border-color)";
+            field.style.boxShadow = "";
+          }
+        });
+
+        if (!isValid) {
+          // Scroll to first invalid field
+          const firstInvalid = document.querySelector(
+            "input[required]:invalid, select[required]:invalid"
+          );
+          if (firstInvalid) {
+            firstInvalid.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          }
+
+          // Show error message
+          const errorDiv = document.createElement("div");
+          errorDiv.className = "alert alert-danger mt-3";
+          errorDiv.innerHTML =
+            '<i class="fas fa-exclamation-triangle me-2"></i>Please fill in all required fields marked with *';
+          errorDiv.style.animation = "fadeIn 0.5s ease";
+
+          const submitBtn = document.getElementById("submitBtn");
+          submitBtn.parentNode.insertBefore(errorDiv, submitBtn);
+
+          setTimeout(() => {
+            errorDiv.remove();
+          }, 5000);
+        }
+
+        return isValid;
+      }
+
+      // Form submission with database and email integration
+      document
+        .getElementById("bookingForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          if (!validateForm()) {
+            return;
+          }
+
+          const submitBtn = document.getElementById("submitBtn");
+          const spinner = document.getElementById("loadingSpinner");
+          const formContent =
+            document.getElementById("bookingForm").parentElement;
+
+          // Show loading state
+          submitBtn.disabled = true;
+          spinner.style.display = "inline-block";
+          submitBtn.innerHTML =
+            '<span class="loading-spinner" style="display: inline-block;"></span>Processing your booking...';
+
+          // Collect form data
+          const formData = new FormData(this);
+          const bookingData = {
+            fullName: formData.get("fullName"),
+            email: formData.get("email"),
+            phone: formData.get("phone"),
+            sessionDate: formData.get("sessionDate"),
+            sessionTime: formData.get("sessionTime"),
+            location: formData.get("location"),
+            sessionType: formData.get("sessionType"),
+            specialRequests: formData.get("specialRequests"),
+            referralSource: formData.get("referralSource"),
+            addons: selectedAddons,
+            totalPrice: calculateTotalPrice(),
+            bookingReference: "PB" + Date.now().toString().slice(-6),
+            submittedAt: new Date().toISOString(),
+          };
+
+          // Submit to database and send emails
+          submitBooking(bookingData)
+            .then((response) => {
+              if (response.success) {
+                // Set booking reference
+                document.getElementById("bookingReference").textContent =
+                  bookingData.bookingReference;
+
+                // Generate final summary
+                generateFinalSummary();
+
+                // Animate form exit
+                formContent.classList.add("animate-fade-out");
+
+                setTimeout(() => {
+                  // Hide form and show thank you page with animation
+                  formContent.style.display = "none";
+                  const thankYouPage = document.getElementById("thankYouPage");
+                  thankYouPage.classList.add("active");
+                  thankYouPage.style.opacity = "0";
+                  thankYouPage.style.transform = "translateY(30px)";
+
+                  // Animate thank you page entrance
+                  setTimeout(() => {
+                    thankYouPage.style.transition =
+                      "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+                    thankYouPage.style.opacity = "1";
+                    thankYouPage.style.transform = "translateY(0)";
+                  }, 50);
+
+                  // Scroll to top
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }, 500);
+              } else {
+                throw new Error(
+                  response.message || "Booking submission failed"
+                );
+              }
+            })
+            .catch((error) => {
+              console.error("Booking submission error:", error);
+              showErrorMessage(
+                "There was an error processing your booking. Please try again or contact us directly."
+              );
+            })
+            .finally(() => {
+              // Reset button state
+              submitBtn.disabled = false;
+              spinner.style.display = "none";
+              submitBtn.innerHTML =
+                '<i class="fas fa-camera me-2"></i>Book My Photography Session';
+            });
+        });
+
+      // Database and email submission function
+      async function submitBooking(bookingData) {
+        try {
+          // In a real application, this would be your backend API endpoint
+          const response = await fetch("/api/bookings", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(bookingData),
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          return result;
+        } catch (error) {
+          // For demo purposes, simulate successful submission
+          console.log(
+            "Demo Mode: Booking data would be saved to database:",
+            bookingData
+          );
+          console.log(
+            "Demo Mode: Confirmation email would be sent to:",
+            bookingData.email
+          );
+          console.log(
+            "Demo Mode: Admin notification would be sent to: admin@photography.com"
+          );
+
+          // Simulate network delay
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+
+          return {
+            success: true,
+            message: "Booking submitted successfully",
+            bookingId: bookingData.bookingReference,
+          };
+        }
+      }
+
+      function calculateTotalPrice() {
+        const sessionType = document.querySelector(
+          'select[name="sessionType"]'
+        ).value;
+        let basePrice = getSessionPrice(sessionType);
+        let totalPrice = basePrice;
+
+        selectedAddons.forEach((addon) => {
+          totalPrice += addon.price;
+        });
+
+        return totalPrice;
+      }
+
+      function showErrorMessage(message) {
+        const errorDiv = document.createElement("div");
+        errorDiv.className = "alert alert-danger mt-3";
+        errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle me-2"></i>${message}`;
+        errorDiv.style.animation = "fadeIn 0.5s ease";
+
+        const submitBtn = document.getElementById("submitBtn");
+        submitBtn.parentNode.insertBefore(errorDiv, submitBtn);
+
+        setTimeout(() => {
+          errorDiv.remove();
+        }, 8000);
+      }
+
+      function generateFinalSummary() {
+        const formData = new FormData(document.getElementById("bookingForm"));
+        const summary = document.getElementById("finalBookingSummary");
+
+        let basePrice = getSessionPrice(formData.get("sessionType"));
+        let totalPrice = basePrice;
+
+        let summaryHTML = `
+                <div class="summary-item">
+                    <span><strong>Name:</strong></span>
+                    <span>${formData.get("fullName")}</span>
+                </div>
+                <div class="summary-item">
+                    <span><strong>Email:</strong></span>
+                    <span>${formData.get("email")}</span>
+                </div>
+                <div class="summary-item">
+                    <span><strong>Phone:</strong></span>
+                    <span>${formData.get("phone")}</span>
+                </div>
+                <div class="summary-item">
+                    <span><strong>Date:</strong></span>
+                    <span>${formatDate(formData.get("sessionDate"))}</span>
+                </div>
+                <div class="summary-item">
+                    <span><strong>Time:</strong></span>
+                    <span>${
+                      formData.get("sessionTime") || "To be confirmed"
+                    }</span>
+                </div>
+                <div class="summary-item">
+                    <span><strong>Location:</strong></span>
+                    <span>${formData.get("location")}</span>
+                </div>
+                <div class="summary-item">
+                    <span><strong>Session Type:</strong></span>
+                    <span>${formatSessionType(
+                      formData.get("sessionType")
+                    )}</span>
+                </div>
+                <div class="summary-item">
+                    <span><strong>Base Session:</strong></span>
+                    <span>$${basePrice}</span>
+                </div>
+            `;
+
+        selectedAddons.forEach((addon) => {
+          totalPrice += addon.price;
+          summaryHTML += `
+                    <div class="summary-item">
+                        <span>${addon.title}:</span>
+                        <span>+$${addon.price}</span>
+                    </div>
+                `;
+        });
+
+        summaryHTML += `
+                <div class="summary-item">
+                    <span><strong>Total Amount:</strong></span>
+                    <span><strong>$${totalPrice}</strong></span>
+                </div>
+            `;
+
+        summary.innerHTML = summaryHTML;
+      }
+
+      function resetForm() {
+        const thankYouPage = document.getElementById("thankYouPage");
+        const formContent =
+          document.getElementById("bookingForm").parentElement;
+
+        // Animate thank you page exit
+        thankYouPage.style.transition =
+          "all 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53)";
+        thankYouPage.style.opacity = "0";
+        thankYouPage.style.transform = "translateY(-30px)";
+
+        setTimeout(() => {
+          // Reset form
+          document.getElementById("bookingForm").reset();
+          selectedAddons = [];
+
+          // Reset UI
+          document.querySelectorAll(".addon-card").forEach((card) => {
+            card.classList.remove("selected");
+          });
+
+          // Hide summary
+          document.getElementById("liveSummary").style.display = "none";
+
+          // Hide thank you page and show form
+          thankYouPage.classList.remove("active");
+          formContent.style.display = "block";
+          formContent.classList.remove("animate-fade-out");
+
+          // Re-trigger entry animations
+          setTimeout(() => {
+            const animatedElements =
+              document.querySelectorAll(".animate-on-load");
+            animatedElements.forEach((element, index) => {
+              element.style.opacity = "0";
+              element.style.transform = "translateY(20px)";
+
+              setTimeout(() => {
+                element.style.transition =
+                  "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+                element.style.opacity = "1";
+                element.style.transform = "translateY(0)";
+              }, index * 100);
+            });
+          }, 100);
+
+          // Scroll to top
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 500);
+      }
+
+      // Add shake animation for validation errors
+      const style = document.createElement("style");
+      style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+      document.head.appendChild(style);
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'96a81fefb02d3d24',t:'MTc1NDQxNjEwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>

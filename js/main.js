@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
   const navbarCollapse = document.querySelector(".navbar-collapse");
 
-  // Collapse navbar on mobile when link clicked
+  // Collapse mobile nav on link click
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
       if (navbarCollapse.classList.contains("show")) {
@@ -13,11 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // AOS Init
   if (typeof AOS !== "undefined") {
-    AOS.init({
-      duration: 800,
-      easing: "ease-in-out",
-      once: true,
-    });
+    AOS.init({ duration: 800, once: true });
   }
 
   // Scroll-to-top button
@@ -33,28 +29,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
+  // Scroll to top
   window.scrollToTop = function () {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Detect active tab based on page
+  // Highlight based on current file path
   const currentPath = window.location.pathname.split("/").pop() || "index.html";
-  let hasPageMatch = false;
+  let matched = false;
 
   navLinks.forEach((link) => {
     const href = link.getAttribute("href");
     if (!href || href.startsWith("#")) return;
-    const hrefFile = href.split("/").pop();
-
-    if (hrefFile === currentPath) {
+    const fileName = href.split("/").pop();
+    if (fileName === currentPath) {
       navLinks.forEach((l) => l.classList.remove("active"));
       link.classList.add("active");
-      hasPageMatch = true;
+      matched = true;
     }
   });
 
-  // If on index.html and no match, keep HOME active always
-  if (!hasPageMatch && currentPath === "index.html") {
+  // Default to HOME if on index.html
+  if (!matched && currentPath === "index.html") {
     navLinks.forEach((link) => {
       if (link.getAttribute("href") === "#home") {
         link.classList.add("active");
@@ -62,6 +58,55 @@ document.addEventListener("DOMContentLoaded", function () {
         link.classList.remove("active");
       }
     });
+
+    // === Scroll-based section highlight ONLY on index.html ===
+    const sections = document.querySelectorAll("section[id]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id;
+          const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+          if (entry.isIntersecting && activeLink) {
+            navLinks.forEach((l) => l.classList.remove("active"));
+            activeLink.classList.add("active");
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0.6,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  // FAQ Scroll Animation Logic (unchanged)
+  const faqSection = document.getElementById("faq");
+  const whySection = document.getElementById("why-choose-me");
+  const teamSection = document.getElementById("team");
+
+  if (faqSection) {
+    const faqObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.75) {
+            faqSection.classList.add("visible");
+            whySection?.classList.add("peek-slide-up");
+            teamSection?.classList.add("peek-slide-down");
+          } else {
+            faqSection.classList.remove("visible");
+            whySection?.classList.remove("peek-slide-up");
+            teamSection?.classList.remove("peek-slide-down");
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0.75,
+      }
+    );
+    faqObserver.observe(faqSection);
   }
 
   // Carousel
@@ -75,73 +120,12 @@ document.addEventListener("DOMContentLoaded", function () {
       touch: false,
     });
   }
-
-  // === DARK / LIGHT MODE TOGGLE ===
-  const themeToggle = document.getElementById("themeToggle");
-  const rootEl = document.documentElement;
-
-  const updateTheme = (theme) => {
-    rootEl.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-    if (themeToggle) {
-      themeToggle.innerHTML =
-        theme === "dark"
-          ? '<i class="bi bi-sun"></i>'
-          : '<i class="bi bi-moon"></i>';
-    }
-  };
-
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      const current = rootEl.getAttribute("data-theme");
-      const next = current === "dark" ? "light" : "dark";
-      updateTheme(next);
-    });
-  }
-
-  // On page load
-  const saved = localStorage.getItem("theme") || "light";
-  updateTheme(saved);
 });
 
-//Testimonials Banner
+// Always scroll to top on page load (including back/forward)
+window.history.scrollRestoration = "manual";
 
-const banner = document.querySelector(".testimonials-banner");
-const cardWidth = window.innerWidth <= 768 ? 265 : 315; // 250px + 15px gap (mobile), 300px + 15px gap (desktop)
-const totalCards = 10; // Original cards
-let currentIndex = 0;
-
-function moveBanner(direction) {
-  banner.style.animation = "none"; // Stop animation
-  const offset = window.innerWidth <= 768 ? (100 - 250) / 2 : (100 - 300) / 2; // Centering offset
-  if (direction === "next") {
-    currentIndex = (currentIndex + 1) % totalCards;
-  } else if (direction === "prev") {
-    currentIndex = (currentIndex - 1 + totalCards) % totalCards;
-  }
-  const translateX = -(currentIndex * cardWidth);
-  banner.style.transition = "transform 0.5s ease";
-  banner.style.transform = `translateX(${translateX}px)`;
-  if (currentIndex === 0 && direction === "next") {
-    setTimeout(() => {
-      banner.style.transition = "none";
-      banner.style.transform = "translateX(0)";
-      currentIndex = 0;
-    }, 500);
-  }
-  clearTimeout(banner.resumeTimeout);
-  banner.resumeTimeout = setTimeout(() => {
-    banner.style.transition = "none";
-    banner.style.transform = "translateX(0)";
-    banner.style.animation =
-      "scrollWithPause 50s cubic-bezier(0.25, 0.1, 0.25, 1) infinite";
-    currentIndex = 0; // Reset to start
-  }, 5000);
-}
-
-document
-  .querySelector(".nav-btn.prev")
-  .addEventListener("click", () => moveBanner("prev"));
-document
-  .querySelector(".nav-btn.next")
-  .addEventListener("click", () => moveBanner("next"));
+// Also scroll to top on reload
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};

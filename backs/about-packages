@@ -1,0 +1,70 @@
+<!-- ===== Packages Section ===== -->
+<section id="packages" class="py-5 bg-light" data-aos="fade-up">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="testi fw-bold">Our Packages</h2>
+      <p class="text-muted">
+        We provide top-notch packages to simplify your stay and experience.
+      </p>
+    </div>
+    <div class="testi row g-4">
+      <!-- Service 1 -->
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <div
+          class="service-card text-center p-4 h-100 border rounded shadow-sm"
+        >
+          <div class="mb-3">
+            <i class="bi bi-door-open fs-1 text-primary"></i>
+          </div>
+          <h5 class="fw-semibold mb-2">Room Booking</h5>
+          <p class="text-muted">
+            Easy and fast room booking with real-time availability updates.
+          </p>
+        </div>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
+        <div
+          class="service-card text-center p-4 h-100 border rounded shadow-sm"
+        >
+          <div class="mb-3">
+            <i class="bi bi-person-check fs-1 text-primary"></i>
+          </div>
+          <h5 class="fw-semibold mb-2">24/7 Support</h5>
+          <p class="text-muted">
+            Our support team is available around the clock to assist you.
+          </p>
+        </div>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div
+          class="service-card text-center p-4 h-100 border rounded shadow-sm"
+        >
+          <div class="mb-3">
+            <i class="bi bi-building fs-1 text-primary"></i>
+          </div>
+          <h5 class="fw-semibold mb-2">Corporate Booking</h5>
+          <p class="text-muted">
+            Customized solutions for companies and business travelers.
+          </p>
+        </div>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="250">
+        <div
+          class="service-card text-center p-4 h-100 border rounded shadow-sm"
+        >
+          <div class="mb-3">
+            <i class="bi bi-building fs-1 text-primary"></i>
+          </div>
+          <h5 class="fw-semibold mb-2">shoots</h5>
+          <p class="text-muted">Customized shoots available.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

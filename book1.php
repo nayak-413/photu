@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1" />
+  <title>Booking Form</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styl.css" />
+</head>
+
+<body class="bg-gradient-to-br from-blue-50 to-blue-50 min-h-screen">
+  <!-- Floating Background Shapes -->
+  <div class="floating-shapes">
+    <div class="floating-shape text-6xl text-blue-300" style="left: 10%; animation-delay: 0s">
+      📸
+    </div>
+    <div class="floating-shape text-4xl text-blue-300" style="left: 80%; animation-delay: 3s">
+      💝
+    </div>
+    <div class="floating-shape text-4xl sm:text-5xl text-pink-300" style="left: 60%; animation-delay: 6s">
+      ⭐
+    </div>
+    <div class="floating-shape text-4xl text-indigo-300" style="left: 30%; animation-delay: 9s">
+      🎨
+    </div>
+    <div class="floating-shape text-3xl text-blue-300" style="left: 70%; animation-delay: 12s">
+      ✨
+    </div>
+  </div>
+
+  <div class="container mx-auto px-2 sm:px-4 py-6 sm:py-8">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">
+        <i class="fas fa-camera text-blue-600 mr-3"></i>
+        Photography Booking
+      </h1>
+      <p class="text-gray-600">
+        Book your perfect photography session in just a few steps
+      </p>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="max-w-4xl mx-auto mb-8">
+      <div class="flex items-center justify-between mb-4">
+        <div
+          class="step-indicator w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold active"
+          data-step="1">
+          1
+        </div>
+        <div class="flex-1 h-2 bg-gray-200 mx-2 rounded">
+          <div class="progress-bar h-full rounded" style="width: 25%"></div>
+        </div>
+        <div
+          class="step-indicator w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold bg-gray-300"
+          data-step="2">
+          2
+        </div>
+        <div class="flex-1 h-2 bg-gray-200 mx-2 rounded">
+          <div class="progress-bar h-full rounded" style="width: 0%"></div>
+        </div>
+        <div
+          class="step-indicator w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold bg-gray-300"
+          data-step="3">
+          3
+        </div>
+        <div class="flex-1 h-2 bg-gray-200 mx-2 rounded">
+          <div class="progress-bar h-full rounded" style="width: 0%"></div>
+        </div>
+        <div
+          class="step-indicator w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold bg-gray-300"
+          data-step="4">
+          4
+        </div>
+      </div>
+      <div class="flex justify-between text-sm text-gray-600">
+        <span>Personal Info</span>
+        <span>Session Details</span>
+        <span>Add-ons</span>
+        <span>Confirmation</span>
+      </div>
+    </div>
+
+    <!-- Form Container -->
+    <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+      <form id="bookingForm" action="">
+        <!-- Step 1: Personal Information -->
+        <div class="form-step active p-8 sm:p-8" data-step="1">
+          <div class="text-center mb-8">
+            <i class="fas fa-user text-4xl sm:text-4xl sm:text-5xl text-blue-600 mb-4"></i>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">
+              Personal Information
+            </h2>
+            <p class="text-gray-600">Let's start with your basic details</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+              <input type="text" name="fullName" required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                placeholder="Enter your full name" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+              <input type="email" name="email" required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                placeholder="your.email@example.com" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
+              <input type="tel" name="phone" required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                placeholder="+1 (555) 123-4567" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">How did you hear about us?</label>
+              <select name="referralSource"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
+                <option value="">Select an option</option>
+                <option value="google">Google Search</option>
+                <option value="social">Social Media</option>
+                <option value="friend">Friend/Family Referral</option>
+                <option value="website">Photography Website</option>
+                <option value="advertisement">Advertisement</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex justify-end mt-8">
+            <button type="button" class="btn-primary" onclick="nextStep()">
+              Next Step <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Session Details -->
+        <div class="form-step p-8 sm:p-8" data-step="2">
+          <div class="text-center mb-8">
+            <i class="fas fa-calendar-alt text-4xl sm:text-4xl sm:text-5xl text-blue-600 mb-4"></i>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">
+              Session Details
+            </h2>
+            <p class="text-gray-600">
+              When and where would you like your session?
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Session Type *</label>
+              <select name="sessionType" required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                onchange="updateSessionPrice()">
+                <option value="">Select session type</option>
+                <option value="portrait">Portrait Session - ₹300</option>
+                <option value="family">Family Session - ₹400</option>
+                <option value="couple">Couple Session - ₹350</option>
+                <option value="event">Event Photography - ₹500</option>
+                <option value="corporate">Corporate Headshots - ₹250</option>
+                <option value="wedding">Wedding Photography - ₹1200</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Preferred Date *</label>
+              <input type="date" name="sessionDate" required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Preferred Time</label>
+              <select name="sessionTime"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
+                <option value="">Select preferred time</option>
+                <option value="09:00">9:00 AM - Golden Hour</option>
+                <option value="10:00">10:00 AM - Morning Light</option>
+                <option value="11:00">11:00 AM - Bright Light</option>
+                <option value="14:00">2:00 PM - Afternoon</option>
+                <option value="15:00">3:00 PM - Soft Light</option>
+                <option value="16:00">4:00 PM - Warm Light</option>
+                <option value="17:00">5:00 PM - Golden Hour</option>
+                <option value="18:00">6:00 PM - Sunset</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Location *</label>
+              <input type="text" name="location" required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                placeholder="e.g., Central Park, Studio, Your home" />
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Special Requests or Notes</label>
+            <textarea name="specialRequests" rows="4"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+              placeholder="Tell us about any special requests, themes, props you'd like to bring, or anything else we should know..."></textarea>
+          </div>
+
+          <div class="flex justify-between mt-8">
+            <button type="button"
+              class="px-8 py-3 bg-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-400 transition duration-200"
+              onclick="prevStep()">
+              <i class="fas fa-arrow-left mr-2"></i> Previous
+            </button>
+            <button type="button" class="btn-primary" onclick="nextStep()">
+              Next Step <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Add-ons -->
+        <div class="form-step p-8 sm:p-8" data-step="3">
+          <div class="text-center mb-8">
+            <i class="fas fa-plus-circle text-4xl sm:text-5xl text-blue-600 mb-4"></i>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">
+              Enhance Your Experience
+            </h2>
+            <p class="text-gray-600">
+              Select any additional services to make your session even more
+              special
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="addon-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center"
+              data-addon="extra-photos" data-price="50">
+              <i class="fas fa-images text-4xl text-blue-600 mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">Extra Photos</h3>
+              <p class="text-gray-600 mb-4">
+                Additional 25 professionally edited photos
+              </p>
+              <div class="text-2xl font-bold text-orange-600">+₹50</div>
+            </div>
+
+            <div class="addon-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center"
+              data-addon="rush-delivery" data-price="75">
+              <i class="fas fa-bolt text-4xl text-blue-600 mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">Rush Delivery</h3>
+              <p class="text-gray-600 mb-4">
+                Get your photos delivered in just 3 days
+              </p>
+              <div class="text-2xl font-bold text-orange-600">+₹75</div>
+            </div>
+
+            <div class="addon-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center" data-addon="prints"
+              data-price="100">
+              <i class="fas fa-print text-4xl text-blue-600 mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">Print Package</h3>
+              <p class="text-gray-600 mb-4">
+                10 premium quality prints (8x10)
+              </p>
+              <div class="text-2xl font-bold text-orange-600">+₹100</div>
+            </div>
+
+            <div class="addon-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center" data-addon="makeup"
+              data-price="150">
+              <i class="fas fa-palette text-4xl text-blue-600 mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">Makeup Artist</h3>
+              <p class="text-gray-600 mb-4">
+                Professional makeup and styling
+              </p>
+              <div class="text-2xl font-bold text-orange-600">+₹150</div>
+            </div>
+
+            <div class="addon-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center" data-addon="video"
+              data-price="200">
+              <i class="fas fa-video text-4xl text-blue-600 mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">Behind the Scenes</h3>
+              <p class="text-gray-600 mb-4">
+                Short video highlights of your session
+              </p>
+              <div class="text-2xl font-bold text-orange-600">+₹200</div>
+            </div>
+
+            <div class="addon-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center" data-addon="album"
+              data-price="250">
+              <i class="fas fa-book text-4xl text-blue-600 mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">Photo Album</h3>
+              <p class="text-gray-600 mb-4">
+                Custom designed premium photo album
+              </p>
+              <div class="text-2xl font-bold text-orange-600">+₹250</div>
+            </div>
+          </div>
+
+          <div class="flex justify-between mt-8">
+            <button type="button"
+              class="px-8 py-3 bg-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-400 transition duration-200"
+              onclick="prevStep()">
+              <i class="fas fa-arrow-left mr-2"></i> Previous
+            </button>
+            <button type="button" class="btn-primary" onclick="nextStep()">
+              Review Booking <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4: Confirmation -->
+        <div class="form-step p-8 sm:p-8" data-step="4">
+          <div class="text-center mb-8">
+            <i class="fas fa-check-circle text-4xl sm:text-5xl text-green-600 mb-4"></i>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">
+              Review Your Booking
+            </h2>
+            <p class="text-gray-600">
+              Please review all details before confirming your photography
+              session
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-6 mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-800">
+              Booking Summary
+            </h3>
+            <div id="bookingSummary" class="space-y-3"></div>
+          </div>
+
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+            <div class="flex items-start">
+              <i class="fas fa-info-circle text-blue-600 mt-1 mr-3"></i>
+              <div>
+                <h4 class="font-semibold text-blue-800 mb-1">
+                  What happens next?
+                </h4>
+                <ul class="text-blue-700 text-sm space-y-1">
+                  <li>📧 Confirmation email sent to your inbox</li>
+                  <li>
+                    📞 We'll call you within 24 hours to finalize details
+                  </li>
+                  <li>📅 Calendar invite will be sent once confirmed</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-between">
+            <button type="button"
+              class="px-8 py-3 bg-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-400 transition duration-200"
+              onclick="prevStep()">
+              <i class="fas fa-arrow-left mr-2"></i> Previous
+            </button>
+            <button type="submit"
+              class="px-8 py-3 bg-green-600 text-white font-semibold hover:bg-green-700 transition duration-200 pulse"
+              id="submitBtn">
+              <span class="loading-spinner mr-2" id="loadingSpinner"></span>
+              <i class="fas fa-camera mr-2"></i>
+              Confirm Booking
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Success Page -->
+    <div id="successPage" class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8 text-center"
+      style="display: none">
+      <div class="success-animation">
+        <i class="fas fa-check-circle text-8xl text-green-600 mb-6"></i>
+        <h2 class="text-4xl font-bold text-gray-800 mb-4">
+          🎉 Booking Confirmed!
+        </h2>
+        <p class="text-xl text-gray-600 mb-8">
+          Thank you for choosing us for your photography session!
+        </p>
+
+        <div class="bg-gray-50 rounded-xl p-6 mb-8 text-left">
+          <h3 class="text-xl font-semibold mb-4 text-gray-800 text-center">
+            Your Booking Details
+          </h3>
+          <div id="finalBookingSummary" class="space-y-3"></div>
+        </div>
+
+        <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+          <div class="flex items-start">
+            <i class="fas fa-info-circle text-green-600 mt-1 mr-3"></i>
+            <div class="text-left">
+              <h4 class="font-semibold text-green-800 mb-2">
+                What happens next?
+              </h4>
+              <ul class="text-green-700 space-y-1">
+                <li>📧 Confirmation email sent to your inbox</li>
+                <li>📞 We'll call you within 24 hours to finalize details</li>
+                <li>📅 Calendar invite will be sent once confirmed</li>
+                <li>
+                  <strong>Booking Reference: <span id="bookingReference"></span></strong>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-x-4">
+          <button type="button"
+            class="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition duration-200"
+            onclick="resetForm()">
+            <i class="fas fa-plus mr-2"></i>Book Another Session
+          </button>
+          <button type="button"
+            class="px-8 py-3 bg-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-400 transition duration-200"
+            onclick="window.print()">
+            <i class="fas fa-print mr-2"></i>Print Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 1;
+    let selectedAddons = [];
+    let sessionPrices = {
+      portrait: 300,
+      family: 400,
+      couple: 350,
+      event: 500,
+      corporate: 250,
+      wedding: 1200,
+    };
+
+    // Initialize
+    document.addEventListener("DOMContentLoaded", function () {
+      setupAddonSelection();
+      disableBookedDates(); // Fetch and disable booked dates on load
+    });
+
+    function setMinDate() {
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const dateInput = document.querySelector('input[name="sessionDate"]');
+      if (dateInput) {
+        dateInput.min = tomorrow.toISOString().split("T")[0];
+      }
+    }
+
+    function setupAddonSelection() {
+      document.querySelectorAll(".addon-card").forEach((card) => {
+        card.addEventListener("click", function () {
+          const addon = this.dataset.addon;
+          const price = parseInt(this.dataset.price);
+          const title = this.querySelector("h3").textContent;
+
+          if (this.classList.contains("selected")) {
+            this.classList.remove("selected");
+            selectedAddons = selectedAddons.filter(
+              (item) => item.addon !== addon
+            );
+          } else {
+            this.classList.add("selected");
+            selectedAddons.push({
+              addon: addon,
+              title: title,
+              price: price,
+            });
+          }
+        });
+      });
+    }
+
+    function nextStep() {
+      if (validateCurrentStep()) {
+        if (currentStep < 4) {
+          currentStep++;
+          updateStep();
+          if (currentStep === 4) {
+            generateBookingSummary();
+          }
+        }
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        currentStep--;
+        updateStep();
+      }
+    }
+
+    function updateStep() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      // Hide all steps
+      document.querySelectorAll(".form-step").forEach((step) => {
+        step.classList.remove("active");
+        step.style.display = "none";
+      });
+
+      // Show current step
+      const currentStepElement = document.querySelector(
+        `.form-step[data-step="${currentStep}"]`
+      );
+      if (currentStepElement) {
+        currentStepElement.classList.add("active");
+        currentStepElement.style.display = "block";
+      }
+
+      // Update progress indicators
+      document
+        .querySelectorAll(".step-indicator")
+        .forEach((indicator, index) => {
+          const stepNum = index + 1;
+          indicator.classList.remove("active", "completed");
+
+          if (stepNum < currentStep) {
+            indicator.classList.add("completed");
+          } else if (stepNum === currentStep) {
+            indicator.classList.add("active");
+          } else {
+            indicator.classList.remove("active", "completed");
+          }
+        });
+
+      // Update progress bars
+      const progressBars = document.querySelectorAll(".progress-bar");
+      progressBars.forEach((bar, index) => {
+        const stepNum = index + 1;
+        if (stepNum < currentStep) {
+          bar.style.width = "100%";
+        } else if (stepNum === currentStep) {
+          bar.style.width = "25%";
+        } else {
+          bar.style.width = "0%";
+        }
+      });
+    }
+
+    function validateCurrentStep() {
+      const currentStepElement = document.querySelector(
+        `[data-step="${currentStep}"]`
+      );
+      const requiredFields = currentStepElement.querySelectorAll(
+        "input[required], select[required]"
+      );
+      let isValid = true;
+
+      requiredFields.forEach((field) => {
+        if (!field.value.trim()) {
+          field.classList.add("border-red-500");
+          field.classList.remove("border-gray-300");
+          isValid = false;
+
+          // Add shake animation
+          field.style.animation = "shake 0.5s ease-in-out";
+          setTimeout(() => {
+            field.style.animation = "";
+          }, 500);
+        } else {
+          field.classList.remove("border-red-500");
+          field.classList.add("border-gray-300");
+        }
+      });
+
+      if (!isValid) {
+        showError("Please fill in all required fields marked with *");
+      }
+
+      return isValid;
+    }
+
+    function showError(message) {
+      // Remove existing error messages
+      const existingError = document.querySelector(".error-message");
+      if (existingError) {
+        existingError.remove();
+      }
+
+      const errorDiv = document.createElement("div");
+      errorDiv.className =
+        "error-message bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-4";
+      errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle mr-2"></i>${message}`;
+
+      const currentStepElement = document.querySelector(
+        `[data-step="${currentStep}"]`
+      );
+      currentStepElement.appendChild(errorDiv);
+
+      setTimeout(() => {
+        errorDiv.remove();
+      }, 5000);
+    }
+
+    function updateSessionPrice() {
+      // This function can be used to update pricing display if needed
+    }
+
+    function generateBookingSummary() {
+      const formData = new FormData(document.getElementById("bookingForm"));
+      const summaryDiv = document.getElementById("bookingSummary");
+
+      const sessionType = formData.get("sessionType");
+      const basePrice = sessionPrices[sessionType] || 0;
+      let totalPrice = basePrice;
+
+      let summaryHTML = `
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                    <span class="font-medium">Name:</span>
+                    <span>${formData.get("fullName")}</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                    <span class="font-medium">Email:</span>
+                    <span>${formData.get("email")}</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                    <span class="font-medium">Phone:</span>
+                    <span>${formData.get("phone")}</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                    <span class="font-medium">Date:</span>
+                    <span>${formatDate(formData.get("sessionDate"))}</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                    <span class="font-medium">Time:</span>
+                    <span>${formData.get("sessionTime") || "To be confirmed"
+        }</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                    <span class="font-medium">Location:</span>
+                    <span>${formData.get("location")}</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                    <span class="font-medium">Session Type:</span>
+                    <span>${formatSessionType(sessionType)}</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                    <span class="font-medium">Base Session:</span>
+                    <span>₹${basePrice}</span>
+                </div>
+            `;
+
+      selectedAddons.forEach((addon) => {
+        totalPrice += addon.price;
+        summaryHTML += `
+                    <div class="flex justify-between py-2 border-b border-gray-200">
+                        <span class="font-medium">${addon.title}:</span>
+                        <span>+₹${addon.price}</span>
+                    </div>
+                `;
+      });
+
+      summaryHTML += `
+                <div class="flex justify-between py-3 text-xl font-bold text-blue-600">
+                    <span>Total Amount:</span>
+                    <span>₹${totalPrice}</span>
+                </div>
+            `;
+
+      summaryDiv.innerHTML = summaryHTML;
+    }
+
+    function formatDate(dateString) {
+      if (!dateString) return "";
+      const date = new Date(dateString);
+      return date.toLocaleDateString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    }
+
+    function formatSessionType(type) {
+      const types = {
+        portrait: "Portrait Session",
+        family: "Family Session",
+        couple: "Couple Session",
+        event: "Event Photography",
+        corporate: "Corporate Headshots",
+        wedding: "Wedding Photography",
+      };
+      return types[type] || type;
+    }
+
+    // Form submission with database and email integration
+    document
+      .getElementById("bookingForm")
+      .addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById("submitBtn");
+        const spinner = document.getElementById("loadingSpinner");
+
+        // Show loading state
+        submitBtn.disabled = true;
+        spinner.style.display = "inline-block";
+        submitBtn.innerHTML =
+          '<span class="loading-spinner mr-2" style="display: inline-block;"></span>Processing your booking...';
+
+        // Collect form data
+        const formData = new FormData(this);
+        const bookingData = {
+          fullName: formData.get("fullName"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          sessionDate: formData.get("sessionDate"),
+          sessionTime: formData.get("sessionTime"),
+          location: formData.get("location"),
+          sessionType: formData.get("sessionType"),
+          specialRequests: formData.get("specialRequests"),
+          referralSource: formData.get("referralSource"),
+          addons: selectedAddons,
+          totalPrice: calculateTotalPrice(),
+          bookingReference: "PB" + Date.now().toString().slice(-6),
+          submittedAt: new Date().toISOString(),
+        };
+
+        // Submit to database and send emails
+        submitBooking(bookingData)
+          .then((response) => {
+            if (response.success) {
+              // Set booking reference
+              document.getElementById("bookingReference").textContent =
+                bookingData.bookingReference;
+
+              // Generate final summary
+              generateFinalSummary();
+
+              // Hide form and show success page
+              document.querySelector(
+                ".max-w-4xl.mx-auto.bg-white.rounded-2xl.shadow-xl"
+              ).style.display = "none";
+              document.getElementById("successPage").style.display = "block";
+
+              // Scroll to top
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+              throw new Error(
+                response.message || "Booking submission failed"
+              );
+            }
+          })
+          .catch((error) => {
+            console.error("Booking submission error:", error);
+            showError(
+              "There was an error processing your booking. Please try again or contact us directly."
+            );
+          })
+          .finally(() => {
+            // Reset button state
+            submitBtn.disabled = false;
+            spinner.style.display = "none";
+            submitBtn.innerHTML =
+              '<i class="fas fa-camera mr-2"></i>Confirm Booking';
+          });
+      });
+
+    // Database and email submission function
+    async function submitBooking(bookingData) {
+      // This is your backend API endpoint
+      const response = await fetch("api/bookings.php", {
+        // CORRECTED PATH
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingData),
+      });
+
+      if (!response.ok) {
+        const errorResult = await response.json();
+        throw new Error(
+          errorResult.message || `HTTP error! status: ${response.status}`
+        );
+      }
+
+      const result = await response.json();
+      return result;
+    }
+
+    function calculateTotalPrice() {
+      const sessionType = document.querySelector(
+        'select[name="sessionType"]'
+      ).value;
+      let basePrice = sessionPrices[sessionType] || 0;
+      let totalPrice = basePrice;
+
+      selectedAddons.forEach((addon) => {
+        totalPrice += addon.price;
+      });
+
+      return totalPrice;
+    }
+
+    function generateFinalSummary() {
+      const formData = new FormData(document.getElementById("bookingForm"));
+      const summary = document.getElementById("finalBookingSummary");
+
+      const sessionType = formData.get("sessionType");
+      const basePrice = sessionPrices[sessionType] || 0;
+      let totalPrice = basePrice;
+
+      let summaryHTML = `
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                    <span class="font-medium">Name:</span>
+                    <span>${formData.get("fullName")}</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                    <span class="font-medium">Email:</span>
+                    <span>${formData.get("email")}</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                    <span class="font-medium">Phone:</span>
+                    <span>${formData.get("phone")}</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                    <span class="font-medium">Date:</span>
+                    <span>${formatDate(formData.get("sessionDate"))}</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                    <span class="font-medium">Time:</span>
+                    <span>${formData.get("sessionTime") || "To be confirmed"
+        }</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                    <span class="font-medium">Location:</span>
+                    <span>${formData.get("location")}</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                    <span class="font-medium">Session Type:</span>
+                    <span>${formatSessionType(sessionType)}</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                    <span class="font-medium">Base Session:</span>
+                    <span>₹${basePrice}</span>
+                </div>
+            `;
+
+      selectedAddons.forEach((addon) => {
+        totalPrice += addon.price;
+        summaryHTML += `
+                    <div class="flex justify-between py-2 border-b border-gray-200">
+                        <span class="font-medium">${addon.title}:</span>
+                        <span>+₹${addon.price}</span>
+                    </div>
+                `;
+      });
+
+      summaryHTML += `
+                <div class="flex justify-between py-3 text-xl font-bold text-blue-600">
+                    <span>Total Amount:</span>
+                    <span>₹${totalPrice}</span>
+                </div>
+            `;
+
+      summary.innerHTML = summaryHTML;
+    }
+
+    function resetForm() {
+      // Reset form
+      document.getElementById("bookingForm").reset();
+      selectedAddons = [];
+      currentStep = 1;
+
+      // Reset UI
+      document.querySelectorAll(".addon-card").forEach((card) => {
+        card.classList.remove("selected");
+      });
+
+      // Hide success page and show form
+      document.getElementById("successPage").style.display = "none";
+      document.querySelector(
+        ".max-w-4xl.mx-auto.bg-white.rounded-2xl.shadow-xl"
+      ).style.display = "block";
+
+      // Reset to first step
+      updateStep();
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Add shake animation
+    const style = document.createElement("style");
+    style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+    document.head.appendChild(style);
+
+    async function disableBookedDates() {
+      try {
+        const response = await fetch("api/get-booked-dates.php"); // CORRECTED PATH
+        if (!response.ok) {
+          throw new Error("Failed to fetch booked dates.");
+        }
+        const bookedDates = await response.json();
+
+        const dateInput = document.querySelector('input[name="sessionDate"]');
+
+        // Use flatpickr to handle the date picker UI and disable dates
+        flatpickr(dateInput, {
+          minDate: "today",
+          dateFormat: "Y-m-d",
+          disable: bookedDates,
+        });
+      } catch (error) {
+        console.error("Error fetching booked dates:", error);
+        // Fallback to just setting minDate if the API fails
+        setMinDate();
+      }
+    }
+  </script>
+</body>
+
+</html>
